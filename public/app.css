@@ -1,0 +1,77 @@
+.title {
+    font-family: Copperplate;
+    color: rgb(105, 105, 105);
+    font-style: unset;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+body {
+    background-color: rgb(245, 241, 241);
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+  }
+  form.label {
+    color: aliceblue;
+  }
+ .container {
+  padding: 20px;
+}
+
+input[type=text], input[type=password] {
+  width: 20%;
+  padding: 12px 20px;
+  margin-left: 20px;
+  margin: 8px 0;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type=text]::placeholder,
+input[type=password]::placeholder {
+  text-align: center;
+}
+
+
+button {
+    background-color: #0411ff;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+  }
+  
+  /* Add a hover effect for buttons */
+  button:hover {
+    opacity: 0.8;
+  }
+
+  #portfolio-header {
+    font-family: Copperplate;
+    color: rgb(105, 105, 105);
+    font-style: unset;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+  }
+
+  h2 {
+    font-family: Copperplate;
+    color: rgb(105, 105, 105);
+    font-style: unset;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+  }
+  
