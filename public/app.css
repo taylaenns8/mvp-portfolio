@@ -40,7 +40,7 @@ input[type=password]::placeholder {
 }
 
 
-button {
+#login {
     background-color: #0411ff;
     color: white;
     padding: 14px 20px;
@@ -55,7 +55,40 @@ button {
     opacity: 0.8;
   }
 
+  #signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    background-color: #0411ff;
+    color: white;
+    padding: 14px 20px;
+    margin-left: 40%;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    
+  }
+  
+#edit-btn {    
+   
+    margin-top: 30px;
+    background-color: #4e55d7;
+    /* height: 20px;
+    width: 20px;
+    background-color: #0411ff;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%; */
+}
   #portfolio-header {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #0411ff;
+    font-size: 20px;
     font-family: Copperplate;
     color: rgb(105, 105, 105);
     font-style: unset;
@@ -66,6 +99,7 @@ button {
   }
 
   h2 {
+    padding: 20px;
     font-family: Copperplate;
     color: rgb(105, 105, 105);
     font-style: unset;
@@ -74,4 +108,64 @@ button {
     justify-content: center;
     margin: auto;
   }
+
+  p {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #0411ff;
+    height: 50%;
+    width: 30%;
+    padding: 20px;
+    color: rgb(105, 105, 105);
+    font-size: 20px;
+  
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+  }
+
+  #edit-form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  #edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #edit-form label {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  #edit-form input,
+  #edit-form textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid black;
+  }
+  
+  #edit-form button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+
   

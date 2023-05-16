@@ -11,10 +11,7 @@ CREATE TABLE portfolio_items (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
     title TEXT NOT NULL,
-    description TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP DEFAULT NOW(),
-    deleted_at TIMESTAMP
+    description TEXT NOT NULL
 );
 
 

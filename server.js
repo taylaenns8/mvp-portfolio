@@ -23,7 +23,39 @@ app.get("/api/login", (_, res) => {
  });
 });
 
-app.post('/api/login', (req, res) => {
+
+app.post('/api/signup', async (req, res) => {
+  const { name, email, password, title, description } = req.body;
+
+  try {
+    // 1. Create a new user
+    const userResult = await db.query(
+      'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id',
+      [name, email, password]
+    );
+    const userId = userResult.rows[0].id;
+
+    // 2. Create a new portfolio item for the user
+    await db.query(
+      'INSERT INTO portfolio_items (user_id, title, description) VALUES ($1, $2, $3)',
+      [userId, title, description]
+    );
+
+    res.json({ success: true, message: 'User registered successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Unable to register user' });
+  }
+});
+
+
+app.get("/api/portfolio", (_, res) => {
+  db.query('SELECT * FROM portfolio_items').then((data) => {
+   res.json(data.rows);
+  });
+ });
+
+ app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
 
   // Query the database to see if the email and password match
@@ -43,12 +75,17 @@ app.post('/api/login', (req, res) => {
       res.status(500).send('Error querying database');
     });
 });
-
-app.get("/api/portfolio", (_, res) => {
-  db.query('SELECT * FROM portfolio_items').then((data) => {
-   res.json(data.rows);
-  });
- });
+ app.get("/api/login/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("SELECT * FROM users WHERE id = $1", [id])
+    .then((result) => {
+      res.json(result.rows[0]);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error querying database");
+    });
+});
  
  app.get('/api/portfolio', (req, res) => {
   const userId = req.user.id; 
@@ -65,6 +102,35 @@ app.get("/api/portfolio", (_, res) => {
   });
 });
 
+app.get("/api/portfolio/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("SELECT * FROM portfolio_items WHERE id = $1", [id])
+    .then((result) => {
+      res.json(result.rows[0]);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error querying database");
+    });
+});
+
+app.put("/api/portfolio/:id", async (req, res) => {
+  const id = req.params.id;
+  const { title, description } = req.body;
+
+  console.log(`Updating portfolio with id ${id}. New title: ${title}, new description: ${description}.`);
+
+  db.query(`UPDATE portfolio_items SET title = '${title}', description = '${description}' WHERE id = ${id}`)
+    .then(result => {
+      console.log('Portfolio item updated successfully');
+      res.json({ success: true, message: 'Portfolio item updated successfully' });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ success: false, message: 'Unable to update portfolio item' });
+    });
+
+  });
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
